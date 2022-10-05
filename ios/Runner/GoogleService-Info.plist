@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>491559394759-ddm9nh0e2m8r8qrvu2gu5is27pk610r9.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.491559394759-ddm9nh0e2m8r8qrvu2gu5is27pk610r9</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDHqndAYwSU9bUm02t4_XCVMyMfI7yNhhs</string>
+	<key>GCM_SENDER_ID</key>
+	<string>491559394759</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.nanyangMarche</string>
+	<key>PROJECT_ID</key>
+	<string>nanyang-marche</string>
+	<key>STORAGE_BUCKET</key>
+	<string>nanyang-marche.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:491559394759:ios:99120d761e30ce8c9a4de2</string>
+</dict>
+</plist>

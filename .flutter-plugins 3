@@ -1,0 +1,14 @@
+# This is a generated file; do not edit or check into version control.
+cloud_firestore=/usr/local/bin/flutter/.pub-cache/hosted/pub.dartlang.org/cloud_firestore-3.5.0/
+cloud_firestore_web=/usr/local/bin/flutter/.pub-cache/hosted/pub.dartlang.org/cloud_firestore_web-2.8.9/
+firebase_auth=/usr/local/bin/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_auth-3.11.1/
+firebase_auth_web=/usr/local/bin/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_auth_web-4.6.0/
+firebase_core=/usr/local/bin/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core-1.24.0/
+firebase_core_web=/usr/local/bin/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core_web-1.7.3/
+firebase_database=/usr/local/bin/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_database-9.1.6/
+firebase_database_web=/usr/local/bin/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_database_web-0.2.1+8/
+firebase_in_app_messaging=/usr/local/bin/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_in_app_messaging-0.6.0+26/
+firebase_messaging=/usr/local/bin/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_messaging-13.0.4/
+firebase_messaging_web=/usr/local/bin/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_messaging_web-3.1.6/
+firebase_storage=/usr/local/bin/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_storage-10.3.10/
+firebase_storage_web=/usr/local/bin/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_storage_web-3.3.8/

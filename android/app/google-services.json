@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "491559394759",
+    "project_id": "nanyang-marche",
+    "storage_bucket": "nanyang-marche.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:491559394759:android:462c0d59159361699a4de2",
+        "android_client_info": {
+          "package_name": "com.example.nanyang_marche"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "491559394759-jhd5jvlh7toje0ii1o3r73er8ti08v9v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBWWHaq3OrlDN0G_h1NVc1BrPxwA8ZEBAI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "491559394759-jhd5jvlh7toje0ii1o3r73er8ti08v9v.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "491559394759-51eaqibjljl2msa9do7i47so16h2fvdj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.backEnd"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
