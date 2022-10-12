@@ -78,7 +78,6 @@ class _ChatPageState extends State<ChatPage> {
                   messageText: chatUsers[index].messageText,
                   imageUrl: chatUsers[index].imageURL,
                   time: chatUsers[index].time,
-                  isMessageRead: (index == 0 || index == 3)?true:false,
                 );
               },
             ),
@@ -96,7 +95,7 @@ class _ChatPageState extends State<ChatPage> {
 
 
   List<ChatUsers> chatUsers = [
-    ChatUsers(name: "s", messageText: "s", imageURL: "s", time: "1")
+    ChatUsers(name: "isaac", messageText: "hello!", imageURL: "s", time: "13:30")
   ];
 
 

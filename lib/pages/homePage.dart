@@ -12,7 +12,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage>{
   int currentInd = 0;
-  final screens = [ChatPage(), UploadPage(), ChatPage()];
+  final screens = [ChatPage(), UploadPage(), ChatPage(), ChatPage()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,12 +27,16 @@ class _HomePageState extends State<HomePage>{
         onTap: (index) => setState(() => currentInd = index),
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.message),
-            label: "Chats",
+            icon: Icon(Icons.home),
+            label: "Marche",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.group_work),
+            icon: Icon(Icons.upload),
             label: "Upload",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.message),
+            label: "Chats",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.account_box),

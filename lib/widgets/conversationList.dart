@@ -6,8 +6,7 @@ class ConversationList extends StatefulWidget{
   String messageText;
   String imageUrl;
   String time;
-  bool isMessageRead;
-  ConversationList({super.key, required this.name,required this.messageText,required this.imageUrl,required this.time,required this.isMessageRead});
+  ConversationList({super.key, required this.name,required this.messageText,required this.imageUrl,required this.time});
   @override
   _ConversationListState createState() => _ConversationListState();
 }
@@ -41,7 +40,7 @@ class _ConversationListState extends State<ConversationList> {
                         children: <Widget>[
                           Text(widget.name, style: const TextStyle(fontSize: 16),),
                           const SizedBox(height: 6,),
-                          Text(widget.messageText,style: TextStyle(fontSize: 13,color: Colors.grey.shade600, fontWeight: widget.isMessageRead?FontWeight.bold:FontWeight.normal),),
+                          Text(widget.messageText,style: TextStyle(fontSize: 13,color: Colors.grey.shade600, fontWeight: FontWeight.normal),),
                         ],
                       ),
                     ),
@@ -49,7 +48,7 @@ class _ConversationListState extends State<ConversationList> {
                 ],
               ),
             ),
-            Text(widget.time,style: TextStyle(fontSize: 12,fontWeight: widget.isMessageRead?FontWeight.bold:FontWeight.normal),),
+            Text(widget.time,style: const TextStyle(fontSize: 12,fontWeight: FontWeight.normal),),
           ],
         ),
       ),

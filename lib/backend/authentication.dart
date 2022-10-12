@@ -11,7 +11,7 @@ class AuthenticationService {
       UserCredential result = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
       User user = result.user as User;
-      await DatabaseManager().createUserData(name, 'Male', 100, user.uid);
+      await DatabaseManager().createUserData(name, email, user.uid);
       return user;
     } catch (e) {
       print(e.toString());
