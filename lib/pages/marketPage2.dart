@@ -1,0 +1,129 @@
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:flutter/material.dart';
+import 'package:nanyang_marche/widgets/CategoriesWidget.dart';
+import 'package:nanyang_marche/widgets/ItemsWidget.dart';
+import '../widgets/HomeAppBar.dart';
+
+
+
+class HomePage2 extends StatelessWidget{
+  @override
+  Widget build(BuildContext context){
+    return Scaffold(
+      body: ListView(
+        children: [
+          //Custom App Bar Widget
+          Container(
+            padding:  EdgeInsets.only(top: 12),
+            decoration: BoxDecoration(
+              color: Color(0xfff6f1e4),
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(35),
+                topRight: Radius.circular(35),
+              )
+            ),
+            child: Column(
+              children: [
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: 15),
+                  padding: EdgeInsets.symmetric(horizontal: 15),
+                  height: 50,
+                  decoration:BoxDecoration(
+                    color:Colors.white,
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  child: Row(
+                    children: [
+                      //Search Widget
+                      Container(
+                        margin: EdgeInsets.only(left: 5),
+                        height: 50,
+                        width: 300,
+                        child: TextFormField(
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                            hintText: "Search here...",
+                          ),
+                        ),
+                      ),
+                      Spacer(),
+                      Icon(
+                        Icons.search,
+                        size: 27,
+                        color: Color(0xFF072E54),
+                      ),
+                    ],
+                  ),
+                ),
+
+                //Categories
+                Container(
+                  alignment: Alignment.centerLeft,
+                  margin: EdgeInsets.symmetric(
+                    vertical: 20,
+                    horizontal: 10,
+                  ),
+                  child: Text(
+                    "Categories",
+                    style: TextStyle(
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFF072E54)),
+                    ),
+
+                  ),
+
+                  // Categories Widget
+                  CategoriesWidget(),
+
+                  //Items
+                  Container(
+                    alignment: Alignment.centerLeft,
+                    margin: EdgeInsets.symmetric(vertical: 20,horizontal: 10),
+                    child: Text(
+                      "Recommendation",
+                      style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF072E54),
+                      ),
+                    ),
+                  ),
+                //ItemsWidget
+                ItemsWidget(),
+              ],
+            ),
+          ),
+        ],
+      ),
+      // bottomNavigationBar: CurvedNavigationBar(
+      //   backgroundColor: Colors.transparent,
+      //   onTap:(index){},
+      //   height: 60,
+      //     color: Colors.orangeAccent.withOpacity(0.3),
+      //   items:[
+      //     Icon(
+      //       Icons.home,
+      //       size: 30,
+      //       color: Color(0xFF072E54),
+      //     ),
+      //     Icon(
+      //       Icons.chat,
+      //       size: 30,
+      //       color: Color(0xFF072E54),
+      //     ),
+      //     Icon(
+      //       Icons.upload,
+      //       size: 30,
+      //       color: Color(0xFF072E54),
+      //     ),
+      //     Icon(
+      //       Icons.account_box,
+      //       size: 30,
+      //       color: Color(0xFF072E54),
+      //     ),
+      //   ]
+      // ),
+    );
+  }
+}

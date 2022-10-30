@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:nanyang_marche/pages/homePage.dart';
-import 'package:nanyang_marche/pages/loginPage.dart';
+import 'package:nanyang_marche/pages/onboardingPage.dart';
 import 'package:nanyang_marche/pages/loginPage2.dart';
 import 'package:firebase_core/firebase_core.dart';
+
 
 
 void main() async {
@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
         debugShowCheckedModeBanner: false,
-      home: LoginScreen()
+      home: OnBoardingPage()
     );
   }
 }

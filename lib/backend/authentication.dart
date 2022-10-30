@@ -4,6 +4,7 @@ import 'database.dart';
 class AuthenticationService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
+  var usrId = "";
 // registration with email and password
 
   Future createNewUser(String name, String email, String password) async {
@@ -16,6 +17,14 @@ class AuthenticationService {
     } catch (e) {
       print(e.toString());
     }
+  }
+
+  Future createNewItem(String p_name, String imgurl, String p_desc, String p_price) async {
+    final user = _auth.currentUser;
+    final uid = user?.uid;
+    var p_id = DateTime.now().toString();
+    await DatabaseManager().createItemData(p_id, p_name, imgurl, p_desc, p_price, uid!);
+
   }
 
 // sign with email and password
