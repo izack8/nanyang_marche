@@ -7,6 +7,7 @@ class DatabaseManager {
   final CollectionReference userColl =
   FirebaseFirestore.instance.collection("users");
   static String? usr_id = FirebaseAuth.instance.currentUser?.uid.toString();
+  static String? usr_id_doc = FirebaseFirestore.instance.collection("users").doc(usr_id).toString();
 
   Future<void> createUserData(String name, String email, String uid) async {
      await userColl.doc(uid).set({'name': name, 'email': email, 'user_id': uid});

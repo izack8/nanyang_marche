@@ -44,7 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
             decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(
-                  "assets/images/nanyang_marche_logo.jpg",
+                  "assets/images/marche.png",
                 ),
                 fit: BoxFit.cover,
               ),

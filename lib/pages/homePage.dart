@@ -18,7 +18,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage>{
   int currentInd = 0;
-  final screens = [MarketPage(), UploadPage(), ChatDetailPage(), ProfilePage()];
+  final screens = [MarketPage(), ChatDetailPage(), UploadPage(), ProfilePage()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(

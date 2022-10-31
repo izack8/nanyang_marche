@@ -57,7 +57,7 @@ class _ProfilePageState extends State<ProfilePage>{
                 children: [
                   const CircleAvatar(
                     radius: 50.0,
-                    backgroundImage: AssetImage('assets/images/nanyang_marche_logo.jpg'),
+                    backgroundImage: AssetImage('assets/images/isaac.jpg'),
                   ),
                     Text(
                     user_details.name, //name
@@ -124,7 +124,7 @@ class _ProfilePageState extends State<ProfilePage>{
                   Card(
                     margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
                     child: ListTile(
-                      leading: const Image(image: AssetImage('assets/images/nanyang_marche_logo.jpg')),
+                      leading: const Image(image: AssetImage('isaac.jpg')),
                       title: Text(
                         'Brand New Isaac',
                         style: TextStyle(
@@ -137,7 +137,7 @@ class _ProfilePageState extends State<ProfilePage>{
                   Card(
                     margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
                     child: ListTile(
-                      leading: const Image(image: AssetImage('assets/images/nanyang_marche_logo.jpg')),
+                      leading: const Image(image: AssetImage('isaac.jpg')),
                       title: Text(
                         'Second-hand Isaac',
                         style: TextStyle(
@@ -150,7 +150,7 @@ class _ProfilePageState extends State<ProfilePage>{
                   Card(
                     margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
                     child: ListTile(
-                      leading: const Image(image: AssetImage('assets/images/nanyang_marche_logo.jpg')),
+                      leading: const Image(image: AssetImage('isaac.jpg')),
                       title: Text(
                         'Third-hand Isaac',
                         style: TextStyle(
