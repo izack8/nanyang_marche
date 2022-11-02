@@ -40,7 +40,6 @@ class ItemsWidget extends StatelessWidget {
           desc_list.add(element.get('pro_desc'));
 
 
-
         } on FirebaseException catch (e) {
           // Handle any errors.
         }
