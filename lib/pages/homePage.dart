@@ -20,7 +20,7 @@ class _HomePageState extends State<HomePage>{
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.orangeAccent.withOpacity(0.3),
+        backgroundColor: Colors.orange.shade50,
         title: Container(
           padding: EdgeInsets.all(25),
           child: Row(
@@ -84,33 +84,6 @@ class _HomePageState extends State<HomePage>{
             ),
           ]
       ),
-      // bottomNavigationBar: BottomNavigationBar(
-      //   currentIndex: currentInd,
-      //   selectedItemColor: Colors.blue,
-      //   unselectedItemColor: Colors.grey.shade600,
-      //   selectedLabelStyle: const TextStyle(fontWeight: FontWeight.w600),
-      //   unselectedLabelStyle: const TextStyle(fontWeight: FontWeight.w600),
-      //   type: BottomNavigationBarType.fixed,
-      //   onTap: (index) => setState(() => currentInd = index),
-      //   items: const [
-      //     BottomNavigationBarItem(
-      //       icon: Icon(Icons.home),
-      //       label: "Marche",
-      //     ),
-      //     BottomNavigationBarItem(
-      //       icon: Icon(Icons.upload),
-      //       label: "Upload",
-      //     ),
-      //     BottomNavigationBarItem(
-      //       icon: Icon(Icons.message),
-      //       label: "Chats",
-      //     ),
-      //     BottomNavigationBarItem(
-      //       icon: Icon(Icons.account_box),
-      //       label: "Profile",
-      //     ),
-      //   ],
-      // ),
     );
   }
 

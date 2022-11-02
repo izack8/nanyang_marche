@@ -57,7 +57,6 @@ class ItemsWidget extends StatelessWidget {
           shrinkWrap: true,
           children: [
             for(int i=0; i<imgURL_list.length!; i++)
-
               Container(
                 padding: EdgeInsets.only(left: 15, right: 15, top: 10),
                 margin: EdgeInsets.symmetric(vertical: 8,horizontal: 10),
