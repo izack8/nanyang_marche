@@ -6,7 +6,6 @@ import 'package:nanyang_marche/pages/SignUpPage.dart';
 import 'package:get/get.dart';
 import 'package:nanyang_marche/pages/homePage.dart';
 import 'package:nanyang_marche/pages/marketPage.dart';
-import 'package:nanyang_marche/pages/registrationPage.dart';
 
 
 class LoginScreen extends StatefulWidget {

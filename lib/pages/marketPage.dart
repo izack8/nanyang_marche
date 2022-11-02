@@ -4,8 +4,6 @@ import 'package:nanyang_marche/backend/authentication.dart';
 import '../widgets/HomeAppBar.dart';
 import 'package:nanyang_marche/widgets/CategoriesWidget.dart';
 import 'package:nanyang_marche/widgets/ItemsWidget.dart';
-
-import 'registrationPage.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 class MarketPage extends StatefulWidget {
@@ -102,34 +100,6 @@ class _MarketPageState extends State<MarketPage> {
           ),
         ],
       ),
-      // bottomNavigationBar: CurvedNavigationBar(
-      //   backgroundColor: Colors.transparent,
-      //   onTap:(index){},
-      //   height: 60,
-      //     color: Colors.orangeAccent.withOpacity(0.3),
-      //   items:[
-      //     Icon(
-      //       Icons.home,
-      //       size: 30,
-      //       color: Color(0xFF072E54),
-      //     ),
-      //     Icon(
-      //       Icons.chat,
-      //       size: 30,
-      //       color: Color(0xFF072E54),
-      //     ),
-      //     Icon(
-      //       Icons.upload,
-      //       size: 30,
-      //       color: Color(0xFF072E54),
-      //     ),
-      //     Icon(
-      //       Icons.account_box,
-      //       size: 30,
-      //       color: Color(0xFF072E54),
-      //     ),
-      //   ]
-      // ),
     );
   }
 

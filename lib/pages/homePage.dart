@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:nanyang_marche/pages/marketPage2.dart';
 import 'package:nanyang_marche/pages/ProfilePage.dart';
 import 'package:nanyang_marche/pages/chats/chatDetails.dart';
 import 'package:nanyang_marche/pages/marketPage.dart';
