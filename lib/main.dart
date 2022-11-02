@@ -3,8 +3,6 @@ import 'package:nanyang_marche/pages/onboardingPage.dart';
 import 'package:nanyang_marche/pages/loginPage2.dart';
 import 'package:firebase_core/firebase_core.dart';
 
-
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();

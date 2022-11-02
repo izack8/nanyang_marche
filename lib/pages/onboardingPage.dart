@@ -3,15 +3,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:nanyang_marche/pages/loginPage2.dart';
 
-class OnBoardingPage extends StatefulWidget {
+class OnBoardingPage extends StatelessWidget {
   const OnBoardingPage({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
-  _OnBoardingPageState createState() => _OnBoardingPageState();
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        body: SafeArea(child: OnBoard()),
+      ),
+    );
+  }
 }
 
-class _OnBoardingPageState extends State<OnBoardingPage> {
+class OnBoard extends StatelessWidget {
+  const OnBoard({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +28,8 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
       width: width,
       decoration: const BoxDecoration(
           image: DecorationImage(
-              image: AssetImage('assets/images/background.png')
+              image: AssetImage('assets/images/background.png'),
+              fit: BoxFit.fitWidth,
           )
       ),
       child: Center(
@@ -70,8 +78,6 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
       ),
     );
   }
-
-
 }
 
 class SliderDisplay extends StatefulWidget {
@@ -81,7 +87,8 @@ class SliderDisplay extends StatefulWidget {
   State<SliderDisplay> createState() => _SliderDisplayState();
 }
 class _SliderDisplayState extends State<SliderDisplay> {
-  List itemText = ['Welcome to Nanyang Marche!', 'We sell many items', 'To begin, click on the "Get Started" button below'];
+  List itemText = ['Welcome to Nanyang Marche!', 'We sell many items',
+    'To begin, click on the \n"Get Started" button below'];
   int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
@@ -101,11 +108,9 @@ class _SliderDisplayState extends State<SliderDisplay> {
                                 fontSize: 18.0,
                                 color: Colors.black,
                                 fontWeight: FontWeight.bold,),
-                            )
-                            ,
+                            ),
                             const SizedBox(height: 10,),
                             Expanded(child: Image(image: AssetImage('assets/images/slider$i.png'))),
-
                           ],
                         )
                     ],
