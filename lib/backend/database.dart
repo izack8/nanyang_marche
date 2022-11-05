@@ -19,15 +19,6 @@ class DatabaseManager {
       'imgURL':imgurl,'pro_desc':'productDesc', 'pro_price':p_price, 'user_id':uid});
   }
 
-  Future updateUserList(String name, String gender, int score, String uid) async {
-    return await userColl.doc(uid).update({
-      'name': name, 'gender': gender, 'score': score
-    });
-  }
-
-  Future addNewUser(String uid, String name, String ) async {
-    return;
-  }
 
   Future getUsersList() async {
     List itemsList = [];

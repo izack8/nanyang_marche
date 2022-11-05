@@ -24,11 +24,6 @@ class ItemsWidget extends StatelessWidget {
     List desc_list = [];
     List<Products> product_list = [];
 
-    final String? usr_id = FirebaseAuth.instance.currentUser?.uid.toString();
-    final user_id_doc = FirebaseFirestore.instance
-        .collection("users")
-        .doc(FirebaseAuth.instance.currentUser?.uid.toString());
-    final storageRef = FirebaseStorage.instance.ref();
 
     //final pathReference = storageRef.child("images/stars.jpg");
     String url = "assets/images/" + DatabaseManager.usr_id! + "/";
