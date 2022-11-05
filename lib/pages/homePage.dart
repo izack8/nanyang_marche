@@ -21,38 +21,22 @@ class _HomePageState extends State<HomePage>{
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         backgroundColor: Colors.orange.shade50,
-        title: Container(
-          padding: EdgeInsets.all(25),
-          child: Row(
-            children: [
-              Padding(
-                padding: EdgeInsets.only(
-                  left: 15,
-                ),
-                child: Text(
-                  "Nanyang Marche",
-                  style: TextStyle(
-                    fontSize: 23,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFF072E54),
-                  ),
-                ),
-              ),
-              Spacer(),
-              InkWell(
-                onTap: (){
-                  Navigator.pushNamed(context,"logoutPage");
-                },
-                child: Icon(
-                  Icons.logout_outlined,
-                  size: 32,
-                  color: Color(0xFF072E54),
-                ),
-              ),
-
-            ],
-          ),
+        title: Row(
+          children: [Image.asset('assets/images/marche.png',
+            fit: BoxFit.cover,
+            height: 50,
+            width: 100,),
+        Text(
+            "Nanyang Marche",
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              color: Color(0xFF072E54),
+            ),
+        )
+          ]
         ),
         automaticallyImplyLeading: false,
       ),

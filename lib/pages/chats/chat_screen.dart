@@ -2,6 +2,7 @@ import 'package:nanyang_marche/models/models.dart';
 import 'package:nanyang_marche/models/theme2.dart';
 import 'package:nanyang_marche/widgets/icon_buttons.dart';
 import 'package:nanyang_marche/widgets/widgets.dart';
+import 'package:nanyang_marche/widgets/GlowingSendButton.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -337,8 +338,25 @@ class _ActionBar extends StatelessWidget {
               ),
             ),
           ),
+          const Padding(
+            padding: const EdgeInsets.only(
+              left: 12,
+              right: 24.0,
+            ),
+            child: GlowingSendButton(
+              color: AppColors.secondary,
+              icon: Icons.send_rounded,
+              onPressed: emptyfunction,
+            ),
+          ),
         ],
       ),
     );
   }
+}
+
+void emptyfunction() {
+  final A = [];
+  bool b = false;
+  b ? A.add(1) : () => {};
 }
