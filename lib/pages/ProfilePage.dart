@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:nanyang_marche/models/users.dart';
+import 'package:nanyang_marche/widgets/ItemsWidget.dart';
 import 'package:nanyang_marche/models/products.dart';
 import 'package:nanyang_marche/backend/database.dart';
 
@@ -48,121 +49,99 @@ class _ProfilePageState extends State<ProfilePage>{
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
-        backgroundColor: Colors.lightBlue,
+        backgroundColor: Color(0xfff6f1e4),
         body: SafeArea(
             child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const CircleAvatar(
-                    radius: 50.0,
-                    backgroundImage: AssetImage('assets/images/isaac.jpg'),
-                  ),
-                    Text(
-                    user_details.name, //name
-                    style: const TextStyle(
-                      fontFamily: 'DancingScript',
-                      fontSize: 40.0,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
+              child: ListView(
+                children: [Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const CircleAvatar(
+                      radius: 50.0,
+                      backgroundImage: AssetImage('assets/images/isaac.jpg'),
                     ),
-                  ),
-                  MaterialButton(
-                      color: Colors.blue,
-                      onPressed: retrieveData,
-                      child: const Text(
-                          "Follow Me",
-                          style: TextStyle(
-                              color: Colors.white70, fontWeight: FontWeight.bold
-                          )
+                      Text(
+                      user_details.name, //name
+                      style: const TextStyle(
+                        fontSize: 40.0,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
                       ),
-                  ),
-                  const SizedBox(
-                    height: 20.0,
-                    width: 200.0,
-                  ),
-                  Row(
-                    children: const [
-
-                      Expanded(
-                        flex:1,
-                        child: Center(
-                          child: Text(
-                            'Posts 0',
+                    ),
+                    MaterialButton(
+                        color: Colors.blue,
+                        onPressed: retrieveData,
+                        child: const Text(
+                            "Follow Me",
                             style: TextStyle(
-                              // fontFamily: 'SourceSansPro',
-                              fontSize: 20.0,
-                              color: Colors.greenAccent,
-                              letterSpacing: 2.5,
-                              fontWeight: FontWeight.bold,
+                                color: Colors.white70, fontWeight: FontWeight.bold
+                            )
+                        ),
+                    ),
+                    const SizedBox(
+                      height: 20.0,
+                      width: 200.0,
+                    ),
+                    Row(
+                      children: const [
+
+                        Expanded(
+                          flex:1,
+                          child: Center(
+                            child: Text(
+                              'Posts 0',
+                              style: TextStyle(
+                                fontSize: 20.0,
+                                color: Colors.greenAccent,
+                                letterSpacing: 2.5,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      Expanded(
-                        flex: 1,
-                        child: Center(
-                          child: Text(
-                            'Followers 0',
-                            style: TextStyle(
-                              // fontFamily: 'SourceSansPro',
-                              fontSize: 20.0,
-                              color: Colors.greenAccent,
-                              letterSpacing: 2.5,
-                              fontWeight: FontWeight.bold,
+                        Expanded(
+                          flex: 1,
+                          child: Center(
+                            child: Text(
+                              'Followers 0',
+                              style: TextStyle(
+                                fontSize: 20.0,
+                                color: Colors.greenAccent,
+                                letterSpacing: 2.5,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 20.0,
-                    width: 200.0,
-                  ),
-                  Card(
-                    margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
-                    child: ListTile(
-                      leading: const Image(image: AssetImage('isaac.jpg')),
-                      title: Text(
-                        'Brand New Isaac',
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 20.0,
+                      width: 200.0,
+                    ),
+                    const SizedBox(
+                      child: Expanded(child: Text(
+                        'Your Listings',
                         style: TextStyle(
-                          color: Colors.teal.shade900,
                           fontSize: 20.0,
+                          color: Colors.greenAccent,
+                          letterSpacing: 2.5,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
-                    ),
-                  ),
-                  Card(
-                    margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
-                    child: ListTile(
-                      leading: const Image(image: AssetImage('isaac.jpg')),
-                      title: Text(
-                        'Second-hand Isaac',
-                        style: TextStyle(
-                          color: Colors.teal.shade900,
-                          fontSize: 20.0,
-                        ),
                       ),
                     ),
-                  ),
-                  Card(
-                    margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
-                    child: ListTile(
-                      leading: const Image(image: AssetImage('isaac.jpg')),
-                      title: Text(
-                        'Third-hand Isaac',
-                        style: TextStyle(
-                          color: Colors.teal.shade900,
-                          fontSize: 20.0,
-                        ),
-                      ),
+                    const SizedBox(
+                      height: 20.0,
+                      width: 200.0,
                     ),
-                  ),
+                    ItemsWidget(),
 
-                ],
-              ),
+                  ],
+                ),
+              ]),
             )),
       ),
     );

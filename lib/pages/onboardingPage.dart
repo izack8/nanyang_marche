@@ -28,52 +28,56 @@ class OnBoard extends StatelessWidget {
       width: width,
       decoration: const BoxDecoration(
           image: DecorationImage(
-              image: AssetImage('assets/images/background.png'),
-              fit: BoxFit.fitWidth,
+              image: AssetImage('assets/images/background.jpg'),
+
+              fit: BoxFit.cover,
           )
       ),
-      child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Image(
-                height: height*0.2,
-                width: width*0.4,
-                image: const AssetImage('assets/images/marche.png')),
-            SliderDisplay(),
-            ElevatedButton(
-                style: ButtonStyle(
-                  minimumSize: MaterialStateProperty.all(const Size(200, 40)),
-                  backgroundColor: MaterialStateProperty.all(Colors.white),
-                  foregroundColor: MaterialStateProperty.all(Colors.greenAccent),
-                  overlayColor: MaterialStateProperty.all(Colors.greenAccent),
-                  shadowColor: MaterialStateProperty.all(Colors.black),
-                  padding: MaterialStateProperty.all(const EdgeInsets.all(15)),
-                  shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
-                    side: const BorderSide(color: Colors.black, width: 2,),
-                  ),),
-                ),
-                child: const Text(
-                    "Get Started",
-                    style: TextStyle(
-                      color: Colors.blue,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                      fontFamily: 'Montserrat',
-                    )
-                ),
-                onPressed: () {
-                  Navigator.of(context).push(
-                    CupertinoPageRoute(
-                      fullscreenDialog: true,
-                      builder: (context) => const LoginScreen(),
-                    ),
-                  );
-                }
-            ),
-            const SizedBox(height: 5)
-          ],
+      child: Scaffold(
+        backgroundColor: Colors.white.withOpacity(0.7),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Image(
+                  height: height*0.2,
+                  width: width*0.4,
+                  image: const AssetImage('assets/images/marche.png')),
+              SliderDisplay(),
+              ElevatedButton(
+                  style: ButtonStyle(
+                    minimumSize: MaterialStateProperty.all(const Size(200, 40)),
+                    backgroundColor: MaterialStateProperty.all(Colors.white),
+                    foregroundColor: MaterialStateProperty.all(Colors.greenAccent),
+                    overlayColor: MaterialStateProperty.all(Colors.greenAccent),
+                    shadowColor: MaterialStateProperty.all(Colors.black),
+                    padding: MaterialStateProperty.all(const EdgeInsets.all(15)),
+                    shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                      side: const BorderSide(color: Colors.black, width: 2,),
+                    ),),
+                  ),
+                  child: const Text(
+                      "Get Started",
+                      style: TextStyle(
+                        color: Colors.blue,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                        fontFamily: 'Montserrat',
+                      )
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      CupertinoPageRoute(
+                        fullscreenDialog: true,
+                        builder: (context) => const LoginScreen(),
+                      ),
+                    );
+                  }
+              ),
+              const SizedBox(height: 5)
+            ],
+          ),
         ),
       ),
     );

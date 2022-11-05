@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:nanyang_marche/pages/ProfilePage.dart';
 import 'package:nanyang_marche/pages/chats/chatDetails.dart';
 import 'package:nanyang_marche/pages/marketPage.dart';
+import 'package:nanyang_marche/pages/uploadPage.dart';
 import 'uploadPage.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
