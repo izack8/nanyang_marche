@@ -22,9 +22,9 @@ class _ProfilePageState extends State<ProfilePage>{
   final storageRef = FirebaseStorage.instance.ref();
   static String? usr_id = FirebaseAuth.instance.currentUser?.uid.toString();
   final user_id_doc = FirebaseFirestore.instance.collection("users").doc(usr_id);
-  Users user_details = Users(name:"distance",email: "email",uid: 'user_id');
+  Users user_details = Users(name:"isaacccc",email: "email",uid: 'user_id');
 
-  void retrieveData() async{
+  Future retrieveData() async{
     final ref = FirebaseFirestore.instance.collection("users").doc(usr_id).withConverter(
       fromFirestore: Users.fromFirestore,
       toFirestore: (Users users, _) => users.toFirestore(),
@@ -34,64 +34,94 @@ class _ProfilePageState extends State<ProfilePage>{
     if (users != null) {
       user_details = Users(name:users.name,email: users.email,uid: users.uid);
       print(user_details.name);
-      setState(() {});
     } else {
       print("No such document.");
     }
   }
 
-  @override
-  void initState() {
-    super.initState();
-    retrieveData();
-  }
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        backgroundColor: Color(0xfff6f1e4),
-        body: SafeArea(
-            child: Center(
-              child: ListView(
-                  children: [Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const CircleAvatar(
-                        radius: 50.0,
-                        backgroundImage: AssetImage('assets/images/isaac.jpg'),
-                      ),
-                      Text(
-                        user_details.name, //name
-                        style: const TextStyle(
-                          fontSize: 40.0,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      MaterialButton(
-                        color: Colors.blue,
-                        onPressed: retrieveData,
-                        child: const Text(
-                            "Follow Me",
-                            style: TextStyle(
-                                color: Colors.white70, fontWeight: FontWeight.bold
-                            )
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 20.0,
-                        width: 200.0,
-                      ),
-                      Row(
-                        children: const [
+    return FutureBuilder(
+      future: retrieveData(),
+      builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+        if (snapshot.connectionState == ConnectionState.done) {
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            home: Scaffold(
+              backgroundColor: Color(0xfff6f1e4),
+              body: SafeArea(
+                  child: Center(
+                    child: ListView(
+                        children: [Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const CircleAvatar(
+                              radius: 50.0,
+                              backgroundImage: AssetImage('assets/images/isaac.jpg'),
+                            ),
+                            Text(
+                              user_details.name, //name
+                              style: const TextStyle(
+                                fontSize: 40.0,
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            MaterialButton(
+                              color: Colors.blue,
+                              onPressed: retrieveData,
+                              child: const Text(
+                                  "Follow Me",
+                                  style: TextStyle(
+                                      color: Colors.white70, fontWeight: FontWeight.bold
+                                  )
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 20.0,
+                              width: 200.0,
+                            ),
+                            Row(
+                              children: const [
 
-                          Expanded(
-                            flex:1,
-                            child: Center(
-                              child: Text(
-                                'Posts 0',
+                                Expanded(
+                                  flex:1,
+                                  child: Center(
+                                    child: Text(
+                                      'Posts 0',
+                                      style: TextStyle(
+                                        fontSize: 20.0,
+                                        color: Colors.black,
+                                        letterSpacing: 2.5,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 1,
+                                  child: Center(
+                                    child: Text(
+                                      'Followers 0',
+                                      style: TextStyle(
+                                        fontSize: 20.0,
+                                        color: Colors.black,
+                                        letterSpacing: 2.5,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 20.0,
+                              width: 200.0,
+                            ),
+                            const SizedBox(
+                              child: Expanded(child: Text(
+                                'Your Listings',
                                 style: TextStyle(
                                   fontSize: 20.0,
                                   color: Colors.black,
@@ -99,51 +129,25 @@ class _ProfilePageState extends State<ProfilePage>{
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
-                            ),
-                          ),
-                          Expanded(
-                            flex: 1,
-                            child: Center(
-                              child: Text(
-                                'Followers 0',
-                                style: TextStyle(
-                                  fontSize: 20.0,
-                                  color: Colors.black,
-                                  letterSpacing: 2.5,
-                                  fontWeight: FontWeight.bold,
-                                ),
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 20.0,
-                        width: 200.0,
-                      ),
-                      const SizedBox(
-                        child: Expanded(child: Text(
-                          'Your Listings',
-                          style: TextStyle(
-                            fontSize: 20.0,
-                            color: Colors.black,
-                            letterSpacing: 2.5,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 20.0,
-                        width: 200.0,
-                      ),
-                      ItemsWidget(),
+                            const SizedBox(
+                              height: 20.0,
+                              width: 200.0,
+                            ),
+                            ItemsWidget(),
 
-                    ],
-                  ),
-                  ]),
-            )),
-      ),
+                          ],
+                        ),
+                        ]),
+                  )),
+            ),
+          );
+        }else {
+          return CircularProgressIndicator();
+        }
+
+      }
     );
   }
 }

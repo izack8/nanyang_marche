@@ -52,6 +52,7 @@ class _UploadPageState extends State<UploadPage> {
       final imageTemp = image.path;
       setState(() {
         containerImage = imageTemp;
+        print(containerImage);
       });
     } on PlatformException catch(e) {
       print('Failed to pick image: $e');
@@ -66,10 +67,11 @@ class _UploadPageState extends State<UploadPage> {
       //uploads to firebase storage
       final imagesRef = storageRef.child(img_url);
       await imagesRef.putFile(File(image!.path));
-
       //uploads the schema with the right directory
       DatabaseManager().createItemData(picId, p_name, img_url, p_desc, p_price);
-
+      nameController.clear();
+      priceController.clear();
+      descController.clear();
 
       //note that picId is the directory in firebase storage AND schema
     }catch(e){
@@ -242,6 +244,7 @@ class _UploadPageState extends State<UploadPage> {
               children: [
                 ElevatedButton(
                     onPressed: () {
+                      print (nameController.text);
                       uploadItem(nameController.text.toString(), descController.text.toString(), priceController.text.toString());
                       },
                     style: ButtonStyle(
