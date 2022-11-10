@@ -26,41 +26,49 @@ class ItemsWidget extends StatelessWidget {
     List desc_list = [];
     var user_name;
 
+    Future searchFunc(String text) async {
+      //.collection("products")
+      //  .where("pro_name", "==", text);
+    }
 
     Future retrieveData() async {
-
-    }
-    //final pathReference = storageRef.child("images/stars.jpg");
-    String url = "assets/images/" + DatabaseManager.usr_id! + "/";
-    Future awaitLists = FirebaseFirestore.instance
-        .collection("users")
-        .doc(FirebaseAuth.instance.currentUser?.uid.toString())
-        .collection("products")
-        .get()
-        .then(
-          (res) async {
+      await FirebaseFirestore.instance
+          .collection("users")
+          .get()
+          .then((res) async {
         for (var element in res.docs) {
-          final imgURL = await FirebaseStorage.instance
-              .ref()
-              .child(url + element.id.toString())
-              .getDownloadURL();
-
-          try {
-            imgURL_list.add(imgURL);
-            name_list.add(element.get('pro_name'));
-            desc_list.add(element.get('pro_desc'));
-            price_list.add(element.get('pro_price'));
-
-          } on FirebaseException catch (e) {
-            // Handle any errors.
-          }
+          String url = "assets/images/" + element.id + "/";
+          print(element.id);
+          await FirebaseFirestore.instance
+              .collection("users")
+              .doc(element.id.toString())
+              .collection("products")
+              .get()
+              .then((res) async {
+              for (var element in res.docs) {
+                print(element.id);
+                try {
+                  final imgURL = await FirebaseStorage.instance
+                      .ref()
+                      .child(url + element.id.toString())
+                      .getDownloadURL();
+                  imgURL_list.add(imgURL);
+                  name_list.add(element.get('pro_name'));
+                  desc_list.add(element.get('pro_desc'));
+                  price_list.add(element.get('pro_price'));
+                } on FirebaseException catch (e) {
+                  print('ERROR');
+                }
+              }
+            },
+            onError: (e) => print("Error completing: $e"),
+          );
         }
-      },
-      onError: (e) => print("Error completing: $e"),
-    );
+      });
+    }
 
     return FutureBuilder(
-      future: awaitLists,
+      future: retrieveData(),
       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           return GridView.count(
@@ -90,10 +98,11 @@ class ItemsWidget extends StatelessWidget {
                         ),
                         InkWell(
                           onTap: () {
-
-                            ProductPage.user_name = FirebaseFirestore.instance.collection("users").doc(
-                                FirebaseAuth.instance.currentUser?.uid.toString()
-                            ).get();
+                            ProductPage.user_name = FirebaseFirestore.instance
+                                .collection("users")
+                                .doc(FirebaseAuth.instance.currentUser?.uid
+                                    .toString())
+                                .get();
                             ProductPage.imgURL = imgURL_list[i];
                             ProductPage.p_desc = desc_list[i];
                             ProductPage.p_name = name_list[i];
@@ -105,7 +114,6 @@ class ItemsWidget extends StatelessWidget {
                                 builder: (context) => const ProductPage(),
                               ),
                             );
-
                           },
                           child: Container(
                             margin: EdgeInsets.all(10),

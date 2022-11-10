@@ -5,7 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:nanyang_marche/models/users.dart';
-import 'package:nanyang_marche/widgets/ItemsWidget.dart';
+import 'package:nanyang_marche/widgets/ItemsWidgetPersonal.dart';
 import 'package:nanyang_marche/models/products.dart';
 import 'package:nanyang_marche/backend/database.dart';
 
@@ -135,7 +135,7 @@ class _ProfilePageState extends State<ProfilePage>{
                               height: 20.0,
                               width: 200.0,
                             ),
-                            ItemsWidget(),
+                            ItemsWidgePersonal(),
 
                           ],
                         ),

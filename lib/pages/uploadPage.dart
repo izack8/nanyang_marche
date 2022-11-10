@@ -7,24 +7,19 @@ import 'package:image_picker/image_picker.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:nanyang_marche/backend/database.dart';
 
-
 class UploadPage extends StatefulWidget {
   const UploadPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-
-    );
+    return Scaffold();
   }
 
   @override
   State<UploadPage> createState() => _UploadPageState();
-
 }
 
 class _UploadPageState extends State<UploadPage> {
-
   final TextEditingController priceController = TextEditingController();
   final TextEditingController nameController = TextEditingController();
   final TextEditingController descController = TextEditingController();
@@ -32,16 +27,14 @@ class _UploadPageState extends State<UploadPage> {
   final storageRef = FirebaseStorage.instance.ref();
   var usrid = FirebaseAuth.instance.currentUser?.uid.toString();
   final CollectionReference userColl =
-  FirebaseFirestore.instance.collection("users");
-
+      FirebaseFirestore.instance.collection("users");
 
   showAlertDialog(BuildContext context) {
     // set up the button
     Widget okButton = TextButton(
         child: const Text("OK"),
         onPressed: () =>
-            Navigator.of(context, rootNavigator: true).pop('dialog')
-    );
+            Navigator.of(context, rootNavigator: true).pop('dialog'));
 
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
@@ -60,7 +53,6 @@ class _UploadPageState extends State<UploadPage> {
       },
     );
   }
-
 
   File? image;
 
@@ -90,20 +82,16 @@ class _UploadPageState extends State<UploadPage> {
     var picId = DateTime.now().toString();
     var img_url = "assets/images/" + usrid! + "/" + picId;
 
-    if (nameController.text
-        .trim()
-        .isNotEmpty && priceController.text
-        .trim()
-        .isNotEmpty && descController.text
-        .trim()
-        .isNotEmpty) {
+    if (nameController.text.trim().isNotEmpty &&
+        priceController.text.trim().isNotEmpty &&
+        descController.text.trim().isNotEmpty) {
       try {
         //uploads to firebase storage
         final imagesRef = storageRef.child(img_url);
         await imagesRef.putFile(image!);
         //uploads the schema with the right directory
-        DatabaseManager().createItemData(
-            picId, p_name, img_url, p_desc, p_price);
+        DatabaseManager()
+            .createItemData(picId, p_name, img_url, p_desc, p_price);
         nameController.clear();
         priceController.clear();
         descController.clear();
@@ -120,43 +108,34 @@ class _UploadPageState extends State<UploadPage> {
 
   @override
   Widget build(BuildContext context) {
-    double w = MediaQuery
-        .of(context)
-        .size
-        .width;
-    double h = MediaQuery
-        .of(context)
-        .size
-        .height;
+    double w = MediaQuery.of(context).size.width;
+    double h = MediaQuery.of(context).size.height;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Color(0xfff6f1e4),
       body: ListView(
         children: [
-          SizedBox(height: h * 0.03,),
+          SizedBox(
+            height: h * 0.03,
+          ),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               GestureDetector(
                 onTap: pickImageCamera,
-                child: image != null ? SizedBox(
-                    width: w * 0.7,
-                    height: h * 0.4,
-                    child: Image.file(image!)) :
-                Container(
-                    width: w * 0.7,
-                    height: h * 0.4,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage('assets/images/camera icon.png'),
-                        fit: BoxFit.cover,
-                      ),
-                    )
+                child: Container(
+                  width: w * 0.7,
+                  height: h * 0.4,
+                  child: image != null
+                      ? Expanded(child: Image.file(image!))
+                      : Expanded(child: Image.asset("assets/images/camera icon.png")),
                 ),
               )
             ],
           ),
-          SizedBox(height: h * 0.03,),
+          SizedBox(
+            height: h * 0.03,
+          ),
           Container(
             height: h * 0.08,
             margin: const EdgeInsets.only(left: 25, right: 200),
@@ -169,35 +148,25 @@ class _UploadPageState extends State<UploadPage> {
                       blurRadius: 10,
                       spreadRadius: 7,
                       offset: Offset(1, 1),
-                      color: Colors.grey.withOpacity(0.2)
-                  )
-                ]
-            ),
+                      color: Colors.grey.withOpacity(0.2))
+                ]),
             child: TextField(
               controller: priceController,
               decoration: InputDecoration(
                   hintText: " Price",
                   focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(30),
-                      borderSide: BorderSide(
-                          color: Colors.white,
-                          width: 1.0
-                      )
-                  ),
+                      borderSide: BorderSide(color: Colors.white, width: 1.0)),
                   enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(30),
-                      borderSide: BorderSide(
-                          color: Colors.white,
-                          width: 1.0
-                      )
-                  ),
+                      borderSide: BorderSide(color: Colors.white, width: 1.0)),
                   border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(30)
-                  )
-              ),
+                      borderRadius: BorderRadius.circular(30))),
             ),
           ),
-          SizedBox(height: h * 0.015,),
+          SizedBox(
+            height: h * 0.015,
+          ),
           Container(
             height: h * 0.08,
             margin: const EdgeInsets.only(left: 25, right: 25),
@@ -209,10 +178,8 @@ class _UploadPageState extends State<UploadPage> {
                       blurRadius: 10,
                       spreadRadius: 7,
                       offset: Offset(1, 1),
-                      color: Colors.grey.withOpacity(0.2)
-                  )
-                ]
-            ),
+                      color: Colors.grey.withOpacity(0.2))
+                ]),
             child: TextField(
               maxLines: 50,
               controller: nameController,
@@ -220,25 +187,17 @@ class _UploadPageState extends State<UploadPage> {
                   hintText: " Product Title",
                   focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(30),
-                      borderSide: BorderSide(
-                          color: Colors.white,
-                          width: 1.0
-                      )
-                  ),
+                      borderSide: BorderSide(color: Colors.white, width: 1.0)),
                   enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(30),
-                      borderSide: BorderSide(
-                          color: Colors.white,
-                          width: 1.0
-                      )
-                  ),
+                      borderSide: BorderSide(color: Colors.white, width: 1.0)),
                   border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(30)
-                  )
-              ),
+                      borderRadius: BorderRadius.circular(30))),
             ),
           ),
-          SizedBox(height: h * 0.015,),
+          SizedBox(
+            height: h * 0.015,
+          ),
           Flexible(
             child: Container(
               margin: const EdgeInsets.only(left: 25, right: 25),
@@ -250,10 +209,8 @@ class _UploadPageState extends State<UploadPage> {
                         blurRadius: 10,
                         spreadRadius: 7,
                         offset: Offset(1, 1),
-                        color: Colors.grey.withOpacity(0.2)
-                    )
-                  ]
-              ),
+                        color: Colors.grey.withOpacity(0.2))
+                  ]),
               child: TextField(
                 controller: descController,
                 maxLines: 50,
@@ -262,26 +219,20 @@ class _UploadPageState extends State<UploadPage> {
                     hintText: " Description",
                     focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(30),
-                        borderSide: BorderSide(
-                            color: Colors.white,
-                            width: 1.0
-                        )
-                    ),
+                        borderSide:
+                            BorderSide(color: Colors.white, width: 1.0)),
                     enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(30),
-                        borderSide: BorderSide(
-                            color: Colors.white,
-                            width: 1.0
-                        )
-                    ),
+                        borderSide:
+                            BorderSide(color: Colors.white, width: 1.0)),
                     border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30)
-                    )
-                ),
+                        borderRadius: BorderRadius.circular(30))),
               ),
             ),
           ),
-          SizedBox(height: h * 0.015,),
+          SizedBox(
+            height: h * 0.015,
+          ),
           Padding(
             padding: const EdgeInsets.all(10),
             child: Column(
@@ -290,23 +241,23 @@ class _UploadPageState extends State<UploadPage> {
                 ElevatedButton(
                     onPressed: () {
                       print(nameController.text);
-                      uploadItem(nameController.text.toString(),
+                      uploadItem(
+                          nameController.text.toString(),
                           descController.text.toString(),
                           priceController.text.toString());
                     },
                     style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(
-                            Colors.blueAccent),
+                        backgroundColor:
+                            MaterialStateProperty.all(Colors.blueAccent),
                         padding: MaterialStateProperty.all(EdgeInsets.all(13))),
-                    child: Text("Post", style: TextStyle(
-                        fontSize: 20, fontStyle: FontStyle.normal),)
-
-                ),
+                    child: Text(
+                      "Post",
+                      style:
+                          TextStyle(fontSize: 20, fontStyle: FontStyle.normal),
+                    )),
               ],
             ),
           ),
-
-
         ],
       ),
     );
