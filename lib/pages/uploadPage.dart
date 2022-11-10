@@ -8,7 +8,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:nanyang_marche/backend/database.dart';
 
 
-class UploadPage extends StatefulWidget{
+class UploadPage extends StatefulWidget {
   const UploadPage({super.key});
 
   @override
@@ -17,10 +17,12 @@ class UploadPage extends StatefulWidget{
 
     );
   }
+
   @override
   State<UploadPage> createState() => _UploadPageState();
 
 }
+
 class _UploadPageState extends State<UploadPage> {
 
   final TextEditingController priceController = TextEditingController();
@@ -31,15 +33,15 @@ class _UploadPageState extends State<UploadPage> {
   var usrid = FirebaseAuth.instance.currentUser?.uid.toString();
   final CollectionReference userColl =
   FirebaseFirestore.instance.collection("users");
-  var containerImage = "assets/images/camera icon.png";
+  var containerImage;
 
 
   showAlertDialog(BuildContext context) {
-
     // set up the button
     Widget okButton = TextButton(
         child: const Text("OK"),
-        onPressed: () => Navigator.of(context, rootNavigator: true).pop('dialog')
+        onPressed: () =>
+            Navigator.of(context, rootNavigator: true).pop('dialog')
     );
 
     // set up the AlertDialog
@@ -61,57 +63,72 @@ class _UploadPageState extends State<UploadPage> {
   }
 
 
+  File? image;
+
   Future pickImageGallery() async {
     try {
       final image = await ImagePicker().pickImage(source: ImageSource.gallery);
-      if(image == null) return;
+      if (image == null) return;
       final imageTemp = File(image.path);
       //setState(() => this.image = imageTemp);
-    } on PlatformException catch(e) {
+    } on PlatformException catch (e) {
       print('Failed to pick image: $e');
     }
   }
+
   Future pickImageCamera() async {
     try {
       final image = await ImagePicker().pickImage(source: ImageSource.camera);
-      if(image == null) return;
-      setState(() => containerImage = image.path);
-    } on PlatformException catch(e) {
+      if (image == null) return;
+      final imageTemp = File(image.path);
+      setState(() => this.image = imageTemp);
+    } on PlatformException catch (e) {
       print('Failed to pick image: $e');
     }
   }
 
   Future uploadItem(p_name, p_desc, p_price) async {
     var picId = DateTime.now().toString();
-    var img_url = "assets/images/"+usrid!+"/"+picId;
+    var img_url = "assets/images/" + usrid! + "/" + picId;
 
-    if (nameController.text.trim().isNotEmpty && priceController.text.trim().isNotEmpty && descController.text.trim().isNotEmpty){
-      try{
+    if (nameController.text
+        .trim()
+        .isNotEmpty && priceController.text
+        .trim()
+        .isNotEmpty && descController.text
+        .trim()
+        .isNotEmpty) {
+      try {
         //uploads to firebase storage
         final imagesRef = storageRef.child(img_url);
-        await imagesRef.putFile(File(containerImage!));
+        await imagesRef.putFile(containerImage);
         //uploads the schema with the right directory
-        DatabaseManager().createItemData(picId, p_name, img_url, p_desc, p_price);
+        DatabaseManager().createItemData(
+            picId, p_name, img_url, p_desc, p_price);
         nameController.clear();
         priceController.clear();
         descController.clear();
 
         //note that picId is the directory in firebase storage AND schema
-      }catch(e){
+      } catch (e) {
         print("Did not upload");
-        print(File(containerImage));
+        print(containerImage);
       }
-    }else {
+    } else {
       showAlertDialog(context);
     }
-
-
-
   }
+
   @override
   Widget build(BuildContext context) {
-    double w = MediaQuery.of(context).size.width;
-    double h = MediaQuery.of(context).size.height;
+    double w = MediaQuery
+        .of(context)
+        .size
+        .width;
+    double h = MediaQuery
+        .of(context)
+        .size
+        .height;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Color(0xfff6f1e4),
@@ -123,25 +140,28 @@ class _UploadPageState extends State<UploadPage> {
             children: [
               GestureDetector(
                 onTap: pickImageCamera,
-                child: Container(
-                  width: w* 0.7,
-                  height: h * 0.4,
-                  decoration: BoxDecoration(
+                child: image != null ? Container(
+                    width: w * 0.7,
+                    height: h * 0.4,
+                    child: Image.file(image!)) :
+                Container(
+                    width: w * 0.7,
+                    height: h * 0.4,
+                    decoration: BoxDecoration(
                       image: DecorationImage(
-                        image: AssetImage(containerImage),
+                        image: AssetImage('assets/images/camera icon.png'),
                         fit: BoxFit.cover,
-                      )
-                  ),
+                      ),
+                    )
                 ),
-
-              ),
+              )
             ],
           ),
           SizedBox(height: h * 0.03,),
           Container(
-            height: h*0.08,
+            height: h * 0.08,
             margin: const EdgeInsets.only(left: 25, right: 200),
-            width: w*0.95,
+            width: w * 0.95,
             decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(30),
@@ -180,7 +200,7 @@ class _UploadPageState extends State<UploadPage> {
           ),
           SizedBox(height: h * 0.015,),
           Container(
-            height: h*0.08,
+            height: h * 0.08,
             margin: const EdgeInsets.only(left: 25, right: 25),
             decoration: BoxDecoration(
                 color: Colors.white,
@@ -265,18 +285,22 @@ class _UploadPageState extends State<UploadPage> {
           SizedBox(height: h * 0.015,),
           Padding(
             padding: const EdgeInsets.all(10),
-            child:Column(
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ElevatedButton(
                     onPressed: () {
-                      print (nameController.text);
-                      uploadItem(nameController.text.toString(), descController.text.toString(), priceController.text.toString());
+                      print(nameController.text);
+                      uploadItem(nameController.text.toString(),
+                          descController.text.toString(),
+                          priceController.text.toString());
                     },
                     style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(Colors.blueAccent),
+                        backgroundColor: MaterialStateProperty.all(
+                            Colors.blueAccent),
                         padding: MaterialStateProperty.all(EdgeInsets.all(13))),
-                    child: Text("Post",style: TextStyle(fontSize: 20, fontStyle: FontStyle.normal),)
+                    child: Text("Post", style: TextStyle(
+                        fontSize: 20, fontStyle: FontStyle.normal),)
 
                 ),
               ],
