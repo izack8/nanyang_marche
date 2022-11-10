@@ -17,7 +17,7 @@ class DatabaseManager {
 
   Future createItemData(String p_id, String p_name, String imgurl, String p_desc, String p_price) async {
     await userColl.doc(usr_id).collection("products").doc(p_id).set({'product_id': p_id, 'pro_name':p_name,
-      'imgURL':imgurl,'pro_desc':'productDesc', 'pro_price':p_price, 'user_id':usr_id});
+      'imgURL':imgurl,'pro_desc':p_desc, 'pro_price':p_price, 'user_id':usr_id});
   }
 
 

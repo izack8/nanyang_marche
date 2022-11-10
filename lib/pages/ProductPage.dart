@@ -1,8 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:nanyang_marche/widgets/HomeAppBar.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:nanyang_marche/models/users.dart';
+import 'package:nanyang_marche/models/products.dart';
+import 'package:nanyang_marche/backend/database.dart';
+
+
 
 class ProductPage extends StatefulWidget {
   const ProductPage({Key?key}) : super(key: key);
+
+  static var imgURL;
+  static var p_name;
+  static var p_desc;
+  static var p_price;
+  static var user_name;
 
   @override
   // ignore: library_private_types_in_public_api
@@ -10,6 +25,8 @@ class ProductPage extends StatefulWidget {
 }
 
 class _ProductPageState extends State<ProductPage> {
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -32,14 +49,14 @@ class _ProductPageState extends State<ProductPage> {
                   children: [
                     hero(),
                     SizedBox(height: height*0.02,),
-                    Text("Product Title",
+                    Text(ProductPage.p_name.toString(),
                       style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                     ),
                     Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Icon(Icons.monetization_on_outlined),
-                        Text("Price ",
+                        Text(ProductPage.p_price.toString(),
                           style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                         ),
                       ],
@@ -49,16 +66,14 @@ class _ProductPageState extends State<ProductPage> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Icon(Icons.account_box),
-                        Text("Seller Name ",
+                        Text("Isaac ",
                           style: TextStyle(fontSize: 15, ),
                         ),
                       ],
                     ),
                     SizedBox(height: height*0.01,),
 
-                    Text("Chanel Premiere available for Sale."
-                        "Used with care and flaws are barely noticeable. "
-                        "This is the most difficult size to come by.  ",
+                    Text(ProductPage.p_desc.toString(),
                         textAlign: TextAlign.start,
                         style: TextStyle(height: 1.75)
                     ),
@@ -100,7 +115,7 @@ class _ProductPageState extends State<ProductPage> {
           Spacer(),
           InkWell(
             onTap: (){
-              Navigator.pushNamed(context,"Homepage2");
+              Navigator.pop(context);
 
             },
             child: Icon(
@@ -119,7 +134,7 @@ Widget hero(){
   return Container(
     child: Stack(
       children: [
-        Image.asset("assets/images/chanel1.png",height:370 , width: 600),
+        Image.network(ProductPage.imgURL,height:370 , width: 600),
       ],
     ),
   );

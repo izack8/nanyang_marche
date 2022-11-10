@@ -7,6 +7,8 @@ import 'package:flutter/services.dart';
 import 'package:nanyang_marche/models/users.dart';
 import 'package:nanyang_marche/models/products.dart';
 import 'package:nanyang_marche/backend/database.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:nanyang_marche/pages/ProductPage.dart';
 
 class ItemsWidget extends StatelessWidget {
   Products products = Products(
@@ -22,9 +24,12 @@ class ItemsWidget extends StatelessWidget {
     List name_list = [];
     List price_list = [];
     List desc_list = [];
-    List<Products> product_list = [];
+    var user_name;
 
 
+    Future retrieveData() async {
+
+    }
     //final pathReference = storageRef.child("images/stars.jpg");
     String url = "assets/images/" + DatabaseManager.usr_id! + "/";
     Future awaitLists = FirebaseFirestore.instance
@@ -84,7 +89,24 @@ class ItemsWidget extends StatelessWidget {
                           ],
                         ),
                         InkWell(
-                          onTap: () {},
+                          onTap: () {
+
+                            ProductPage.user_name = FirebaseFirestore.instance.collection("users").doc(
+                                FirebaseAuth.instance.currentUser?.uid.toString()
+                            ).get();
+                            ProductPage.imgURL = imgURL_list[i];
+                            ProductPage.p_desc = desc_list[i];
+                            ProductPage.p_name = name_list[i];
+                            ProductPage.p_price = price_list[i];
+
+                            Navigator.of(context).push(
+                              CupertinoPageRoute(
+                                fullscreenDialog: true,
+                                builder: (context) => const ProductPage(),
+                              ),
+                            );
+
+                          },
                           child: Container(
                             margin: EdgeInsets.all(10),
                             child: Image.network(

@@ -34,13 +34,39 @@ class _UploadPageState extends State<UploadPage> {
   var containerImage = "assets/images/camera icon.png";
 
 
-  File? image;
+  showAlertDialog(BuildContext context) {
+
+    // set up the button
+    Widget okButton = TextButton(
+        child: const Text("OK"),
+        onPressed: () => Navigator.of(context, rootNavigator: true).pop('dialog')
+    );
+
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: const Text("Empty Fields"),
+      content: const Text("Please fill in all the details"),
+      actions: [
+        okButton,
+      ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
+
   Future pickImageGallery() async {
     try {
       final image = await ImagePicker().pickImage(source: ImageSource.gallery);
       if(image == null) return;
       final imageTemp = File(image.path);
-      setState(() => this.image = imageTemp);
+      //setState(() => this.image = imageTemp);
     } on PlatformException catch(e) {
       print('Failed to pick image: $e');
     }
@@ -49,11 +75,7 @@ class _UploadPageState extends State<UploadPage> {
     try {
       final image = await ImagePicker().pickImage(source: ImageSource.camera);
       if(image == null) return;
-      final imageTemp = image.path;
-      setState(() {
-        containerImage = imageTemp;
-        print(containerImage);
-      });
+      setState(() => containerImage = image.path);
     } on PlatformException catch(e) {
       print('Failed to pick image: $e');
     }
@@ -63,21 +85,27 @@ class _UploadPageState extends State<UploadPage> {
     var picId = DateTime.now().toString();
     var img_url = "assets/images/"+usrid!+"/"+picId;
 
-    try{
-      //uploads to firebase storage
-      final imagesRef = storageRef.child(img_url);
-      await imagesRef.putFile(File(image!.path));
-      //uploads the schema with the right directory
-      DatabaseManager().createItemData(picId, p_name, img_url, p_desc, p_price);
-      nameController.clear();
-      priceController.clear();
-      descController.clear();
+    if (nameController.text.trim().isNotEmpty && priceController.text.trim().isNotEmpty && descController.text.trim().isNotEmpty){
+      try{
+        //uploads to firebase storage
+        final imagesRef = storageRef.child(img_url);
+        await imagesRef.putFile(File(containerImage!));
+        //uploads the schema with the right directory
+        DatabaseManager().createItemData(picId, p_name, img_url, p_desc, p_price);
+        nameController.clear();
+        priceController.clear();
+        descController.clear();
 
-      //note that picId is the directory in firebase storage AND schema
-    }catch(e){
-      print("Did not upload");
-      print(File(image!.path));
+        //note that picId is the directory in firebase storage AND schema
+      }catch(e){
+        print("Did not upload");
+        print(File(containerImage));
+      }
+    }else {
+      showAlertDialog(context);
     }
+
+
 
   }
   @override
@@ -101,7 +129,6 @@ class _UploadPageState extends State<UploadPage> {
                   decoration: BoxDecoration(
                       image: DecorationImage(
                         image: AssetImage(containerImage),
-
                         fit: BoxFit.cover,
                       )
                   ),
@@ -110,7 +137,6 @@ class _UploadPageState extends State<UploadPage> {
               ),
             ],
           ),
-
           SizedBox(height: h * 0.03,),
           Container(
             height: h*0.08,
@@ -246,7 +272,7 @@ class _UploadPageState extends State<UploadPage> {
                     onPressed: () {
                       print (nameController.text);
                       uploadItem(nameController.text.toString(), descController.text.toString(), priceController.text.toString());
-                      },
+                    },
                     style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all(Colors.blueAccent),
                         padding: MaterialStateProperty.all(EdgeInsets.all(13))),
