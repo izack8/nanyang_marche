@@ -33,7 +33,6 @@ class _UploadPageState extends State<UploadPage> {
   var usrid = FirebaseAuth.instance.currentUser?.uid.toString();
   final CollectionReference userColl =
   FirebaseFirestore.instance.collection("users");
-  var containerImage;
 
 
   showAlertDialog(BuildContext context) {
@@ -101,7 +100,7 @@ class _UploadPageState extends State<UploadPage> {
       try {
         //uploads to firebase storage
         final imagesRef = storageRef.child(img_url);
-        await imagesRef.putFile(containerImage);
+        await imagesRef.putFile(image!);
         //uploads the schema with the right directory
         DatabaseManager().createItemData(
             picId, p_name, img_url, p_desc, p_price);
@@ -112,7 +111,7 @@ class _UploadPageState extends State<UploadPage> {
         //note that picId is the directory in firebase storage AND schema
       } catch (e) {
         print("Did not upload");
-        print(containerImage);
+        print(image);
       }
     } else {
       showAlertDialog(context);
@@ -140,7 +139,7 @@ class _UploadPageState extends State<UploadPage> {
             children: [
               GestureDetector(
                 onTap: pickImageCamera,
-                child: image != null ? Container(
+                child: image != null ? SizedBox(
                     width: w * 0.7,
                     height: h * 0.4,
                     child: Image.file(image!)) :
