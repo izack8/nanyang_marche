@@ -1,7 +1,7 @@
 import 'package:nanyang_marche/models/models.dart';
 import 'package:nanyang_marche/models/theme2.dart';
 import 'package:nanyang_marche/widgets/icon_buttons.dart';
-import 'package:nanyang_marche/widgets/widgets.dart';
+import 'package:nanyang_marche/widgets/avatar.dart';
 import 'package:nanyang_marche/widgets/GlowingSendButton.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
