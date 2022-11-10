@@ -19,11 +19,12 @@ class AuthenticationService {
     }
   }
 
+  // might need to delete this cause redundant
   Future createNewItem(String p_name, String imgurl, String p_desc, String p_price) async {
     final user = _auth.currentUser;
     final uid = user?.uid;
     var p_id = DateTime.now().toString();
-    await DatabaseManager().createItemData(p_id, p_name, imgurl, p_desc, p_price, uid!);
+    await DatabaseManager().createItemData(p_id, p_name, imgurl, p_desc, p_price);
 
   }
 

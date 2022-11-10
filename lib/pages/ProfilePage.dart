@@ -55,22 +55,22 @@ class _ProfilePageState extends State<ProfilePage>{
         body: SafeArea(
             child: Center(
               child: ListView(
-                children: [Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const CircleAvatar(
-                      radius: 50.0,
-                      backgroundImage: AssetImage('assets/images/isaac.jpg'),
-                    ),
-                      Text(
-                      user_details.name, //name
-                      style: const TextStyle(
-                        fontSize: 40.0,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
+                  children: [Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const CircleAvatar(
+                        radius: 50.0,
+                        backgroundImage: AssetImage('assets/images/isaac.jpg'),
                       ),
-                    ),
-                    MaterialButton(
+                      Text(
+                        user_details.name, //name
+                        style: const TextStyle(
+                          fontSize: 40.0,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      MaterialButton(
                         color: Colors.blue,
                         onPressed: retrieveData,
                         child: const Text(
@@ -79,69 +79,69 @@ class _ProfilePageState extends State<ProfilePage>{
                                 color: Colors.white70, fontWeight: FontWeight.bold
                             )
                         ),
-                    ),
-                    const SizedBox(
-                      height: 20.0,
-                      width: 200.0,
-                    ),
-                    Row(
-                      children: const [
+                      ),
+                      const SizedBox(
+                        height: 20.0,
+                        width: 200.0,
+                      ),
+                      Row(
+                        children: const [
 
-                        Expanded(
-                          flex:1,
-                          child: Center(
-                            child: Text(
-                              'Posts 0',
-                              style: TextStyle(
-                                fontSize: 20.0,
-                                color: Colors.greenAccent,
-                                letterSpacing: 2.5,
-                                fontWeight: FontWeight.bold,
+                          Expanded(
+                            flex:1,
+                            child: Center(
+                              child: Text(
+                                'Posts 0',
+                                style: TextStyle(
+                                  fontSize: 20.0,
+                                  color: Colors.black,
+                                  letterSpacing: 2.5,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                        Expanded(
-                          flex: 1,
-                          child: Center(
-                            child: Text(
-                              'Followers 0',
-                              style: TextStyle(
-                                fontSize: 20.0,
-                                color: Colors.greenAccent,
-                                letterSpacing: 2.5,
-                                fontWeight: FontWeight.bold,
+                          Expanded(
+                            flex: 1,
+                            child: Center(
+                              child: Text(
+                                'Followers 0',
+                                style: TextStyle(
+                                  fontSize: 20.0,
+                                  color: Colors.black,
+                                  letterSpacing: 2.5,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ),
                           ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 20.0,
+                        width: 200.0,
+                      ),
+                      const SizedBox(
+                        child: Expanded(child: Text(
+                          'Your Listings',
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            color: Colors.black,
+                            letterSpacing: 2.5,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 20.0,
-                      width: 200.0,
-                    ),
-                    const SizedBox(
-                      child: Expanded(child: Text(
-                        'Your Listings',
-                        style: TextStyle(
-                          fontSize: 20.0,
-                          color: Colors.greenAccent,
-                          letterSpacing: 2.5,
-                          fontWeight: FontWeight.bold,
                         ),
                       ),
+                      const SizedBox(
+                        height: 20.0,
+                        width: 200.0,
                       ),
-                    ),
-                    const SizedBox(
-                      height: 20.0,
-                      width: 200.0,
-                    ),
-                    ItemsWidget(),
+                      ItemsWidget(),
 
-                  ],
-                ),
-              ]),
+                    ],
+                  ),
+                  ]),
             )),
       ),
     );

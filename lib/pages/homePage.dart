@@ -16,7 +16,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage>{
   int currentInd = 0;
-  final screens = [MarketPage(), ChatDetailPage(), UploadPage(), ProfilePage()];
+  final screens = [MarketPage(), UploadPage(), ChatDetailPage(), ProfilePage()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,19 +24,12 @@ class _HomePageState extends State<HomePage>{
         centerTitle: true,
         backgroundColor: Colors.orange.shade50,
         title: Row(
-          children: [Image.asset('assets/images/marche.png',
-            fit: BoxFit.cover,
-            height: 50,
-            width: 100,),
-        Text(
-            "Nanyang Marche",
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-              color: Color(0xFF072E54),
-            ),
-        )
-          ]
+            children: [Image.asset('assets/images/marche.png',
+              fit: BoxFit.cover,
+              height: 50,
+              width: 100,),
+
+            ]
         ),
         automaticallyImplyLeading: false,
       ),
@@ -53,12 +46,12 @@ class _HomePageState extends State<HomePage>{
               color: Color(0xFF072E54),
             ),
             Icon(
-              Icons.chat,
+              Icons.upload,
               size: 30,
               color: Color(0xFF072E54),
             ),
             Icon(
-              Icons.upload,
+              Icons.chat,
               size: 30,
               color: Color(0xFF072E54),
             ),

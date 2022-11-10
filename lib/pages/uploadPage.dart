@@ -23,10 +23,15 @@ class UploadPage extends StatefulWidget{
 }
 class _UploadPageState extends State<UploadPage> {
 
+  final TextEditingController priceController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController descController = TextEditingController();
+
   final storageRef = FirebaseStorage.instance.ref();
   var usrid = FirebaseAuth.instance.currentUser?.uid.toString();
   final CollectionReference userColl =
   FirebaseFirestore.instance.collection("users");
+  var containerImage = "assets/images/camera icon.png";
 
 
   File? image;
@@ -44,21 +49,29 @@ class _UploadPageState extends State<UploadPage> {
     try {
       final image = await ImagePicker().pickImage(source: ImageSource.camera);
       if(image == null) return;
-      final imageTemp = File(image.path);
-      setState(() => this.image = imageTemp);
+      final imageTemp = image.path;
+      setState(() {
+        containerImage = imageTemp;
+      });
     } on PlatformException catch(e) {
       print('Failed to pick image: $e');
     }
   }
 
   Future uploadItem(p_name, p_desc, p_price) async {
+    var picId = DateTime.now().toString();
+    var img_url = "assets/images/"+usrid!+"/"+picId;
+
     try{
-      var picId = DateTime.now().toString();
-      var img_url = "assets/images/"+usrid!+"/"+picId;
-      var uid = usrid;
+      //uploads to firebase storage
       final imagesRef = storageRef.child(img_url);
       await imagesRef.putFile(File(image!.path));
-      DatabaseManager().createItemData(picId, p_name, img_url, p_desc, p_price, uid!);
+
+      //uploads the schema with the right directory
+      DatabaseManager().createItemData(picId, p_name, img_url, p_desc, p_price);
+
+
+      //note that picId is the directory in firebase storage AND schema
     }catch(e){
       print("Did not upload");
       print(File(image!.path));
@@ -74,17 +87,24 @@ class _UploadPageState extends State<UploadPage> {
       backgroundColor: Color(0xfff6f1e4),
       body: ListView(
         children: [
-          SizedBox(height: h * 0.06,),
+          SizedBox(height: h * 0.03,),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              ElevatedButton(
-                onPressed: () {pickImageCamera();},
-                style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Colors.white),
-                    padding: MaterialStateProperty.all(EdgeInsets.all(65))),
+              GestureDetector(
+                onTap: pickImageCamera,
+                child: Container(
+                  width: w* 0.7,
+                  height: h * 0.4,
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage(containerImage),
 
-                child:Icon(Icons.camera_alt, size: 100, color: Colors.orangeAccent),
+                        fit: BoxFit.cover,
+                      )
+                  ),
+                ),
+
               ),
             ],
           ),
@@ -107,6 +127,7 @@ class _UploadPageState extends State<UploadPage> {
                 ]
             ),
             child: TextField(
+              controller: priceController,
               decoration: InputDecoration(
                   hintText: " Price",
                   focusedBorder: OutlineInputBorder(
@@ -147,6 +168,7 @@ class _UploadPageState extends State<UploadPage> {
             ),
             child: TextField(
               maxLines: 50,
+              controller: nameController,
               decoration: InputDecoration(
                   hintText: " Product Title",
                   focusedBorder: OutlineInputBorder(
@@ -186,6 +208,7 @@ class _UploadPageState extends State<UploadPage> {
                   ]
               ),
               child: TextField(
+                controller: descController,
                 maxLines: 50,
                 minLines: 1,
                 decoration: InputDecoration(
@@ -218,7 +241,9 @@ class _UploadPageState extends State<UploadPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ElevatedButton(
-                    onPressed: () { uploadItem("test", "mint condition", "65"); },
+                    onPressed: () {
+                      uploadItem(nameController.text.toString(), descController.text.toString(), priceController.text.toString());
+                      },
                     style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all(Colors.blueAccent),
                         padding: MaterialStateProperty.all(EdgeInsets.all(13))),

@@ -20,7 +20,6 @@ class _LoginScreenState extends State<LoginScreen> {
   final _key = GlobalKey<FormState>();
 
   final AuthenticationService _auth = AuthenticationService();
-
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
@@ -46,7 +45,7 @@ class _LoginScreenState extends State<LoginScreen> {
             children: [
               SizedBox(height: h*0.08,),
               Container(
-              width: w* 0.5,
+                width: w* 0.5,
                 height: h * 0.2,
                 decoration: const BoxDecoration(
                   image: DecorationImage(
