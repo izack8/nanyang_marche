@@ -8,12 +8,18 @@ import 'package:firebase_core/firebase_core.dart';
 
 class MarketPage extends StatefulWidget {
   const MarketPage({super.key});
+
+  static final TextEditingController searchController = TextEditingController();
+
   @override
   _MarketPageState createState() => _MarketPageState();
 
 }
 
 class _MarketPageState extends State<MarketPage> {
+
+
+
   @override
   Widget build(BuildContext context){
     return Scaffold(
@@ -47,6 +53,7 @@ class _MarketPageState extends State<MarketPage> {
                         height: 50,
                         width: 300,
                         child: TextFormField(
+                          controller: MarketPage.searchController,
                           decoration: InputDecoration(
                             border: InputBorder.none,
                             hintText: "Search here...",
@@ -54,10 +61,15 @@ class _MarketPageState extends State<MarketPage> {
                         ),
                       ),
                       Spacer(),
-                      Icon(
-                        Icons.search,
-                        size: 27,
-                        color: Color(0xFF072E54),
+                      GestureDetector(
+                        onTap: (() => {
+                          setState(() {})
+                        }),
+                        child: Icon(
+                          Icons.search,
+                          size: 27,
+                          color: Color(0xFF072E54),
+                        ),
                       ),
                     ],
                   ),

@@ -24,17 +24,14 @@ class ItemsWidgePersonal extends StatelessWidget {
     List name_list = [];
     List price_list = [];
     List desc_list = [];
-    var user_name;
+    var user_id = DatabaseManager().getUserId().toString();
 
 
-    Future retrieveData() async {
-
-    }
     //final pathReference = storageRef.child("images/stars.jpg");
-    String url = "assets/images/" + DatabaseManager.usr_id! + "/";
+    String url = "assets/images/$user_id/";
     Future awaitLists = FirebaseFirestore.instance
         .collection("users")
-        .doc(FirebaseAuth.instance.currentUser?.uid.toString())
+        .doc(user_id.toString())
         .collection("products")
         .get()
         .then(

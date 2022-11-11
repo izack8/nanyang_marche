@@ -20,11 +20,10 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage>{
 
   final storageRef = FirebaseStorage.instance.ref();
-  static String? usr_id = FirebaseAuth.instance.currentUser?.uid.toString();
-  final user_id_doc = FirebaseFirestore.instance.collection("users").doc(usr_id);
   Users user_details = Users(name:"isaacccc",email: "email",uid: 'user_id');
 
   Future retrieveData() async{
+    var usr_id = DatabaseManager().getUserId().toString();
     final ref = FirebaseFirestore.instance.collection("users").doc(usr_id).withConverter(
       fromFirestore: Users.fromFirestore,
       toFirestore: (Users users, _) => users.toFirestore(),

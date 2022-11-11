@@ -9,8 +9,12 @@ import 'package:nanyang_marche/models/products.dart';
 import 'package:nanyang_marche/backend/database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:nanyang_marche/pages/ProductPage.dart';
+import 'package:nanyang_marche/pages/marketPage.dart';
 
 class ItemsWidget extends StatelessWidget {
+
+   var searchQuery = MarketPage.searchController.text.toString();
+
   Products products = Products(
       imgURL: "imgURL",
       pro_desc: "pro_desc",
@@ -24,11 +28,14 @@ class ItemsWidget extends StatelessWidget {
     List name_list = [];
     List price_list = [];
     List desc_list = [];
-    var user_name;
+
+    print('here');
+    print(searchQuery);
 
     Future searchFunc(String text) async {
       //.collection("products")
       //  .where("pro_name", "==", text);
+
     }
 
     Future retrieveData() async {
@@ -48,14 +55,29 @@ class ItemsWidget extends StatelessWidget {
               for (var element in res.docs) {
                 print(element.id);
                 try {
-                  final imgURL = await FirebaseStorage.instance
-                      .ref()
-                      .child(url + element.id.toString())
-                      .getDownloadURL();
-                  imgURL_list.add(imgURL);
-                  name_list.add(element.get('pro_name'));
-                  desc_list.add(element.get('pro_desc'));
-                  price_list.add(element.get('pro_price'));
+                  if (searchQuery.trim().isEmpty){
+                    final imgURL = await FirebaseStorage.instance
+                        .ref()
+                        .child(url + element.id.toString())
+                        .getDownloadURL();
+                    imgURL_list.add(imgURL);
+                    print('dang');
+                    name_list.add(element.get('pro_name'));
+                    desc_list.add(element.get('pro_desc'));
+                    price_list.add(element.get('pro_price'));
+                  }else if (element.get('pro_name').toString().toLowerCase().contains(searchQuery.toLowerCase())){
+                      print('righe terer');
+                      final imgURL = await FirebaseStorage.instance
+                          .ref()
+                          .child(url + element.id.toString())
+                          .getDownloadURL();
+                      imgURL_list.add(imgURL);
+                      name_list.add(element.get('pro_name'));
+                      desc_list.add(element.get('pro_desc'));
+                      price_list.add(element.get('pro_price'));
+                      print(imgURL_list);
+                    }
+
                 } on FirebaseException catch (e) {
                   print('ERROR');
                 }
