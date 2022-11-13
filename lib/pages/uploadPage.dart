@@ -127,8 +127,8 @@ class _UploadPageState extends State<UploadPage> {
                   width: w * 0.7,
                   height: h * 0.4,
                   child: image != null
-                      ? Expanded(child: Image.file(image!))
-                      : Expanded(child: Image.asset("assets/images/camera icon.png")),
+                      ? Container(child: Image.file(image!))
+                      : Container(child: Image.asset("assets/images/camera icon.png")),
                 ),
               )
             ],
@@ -198,36 +198,34 @@ class _UploadPageState extends State<UploadPage> {
           SizedBox(
             height: h * 0.015,
           ),
-          Flexible(
-            child: Container(
-              margin: const EdgeInsets.only(left: 25, right: 25),
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(30),
-                  boxShadow: [
-                    BoxShadow(
-                        blurRadius: 10,
-                        spreadRadius: 7,
-                        offset: Offset(1, 1),
-                        color: Colors.grey.withOpacity(0.2))
-                  ]),
-              child: TextField(
-                controller: descController,
-                maxLines: 50,
-                minLines: 1,
-                decoration: InputDecoration(
-                    hintText: " Description",
-                    focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30),
-                        borderSide:
-                            BorderSide(color: Colors.white, width: 1.0)),
-                    enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30),
-                        borderSide:
-                            BorderSide(color: Colors.white, width: 1.0)),
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30))),
-              ),
+          Container(
+            margin: const EdgeInsets.only(left: 25, right: 25),
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(30),
+                boxShadow: [
+                  BoxShadow(
+                      blurRadius: 10,
+                      spreadRadius: 7,
+                      offset: Offset(1, 1),
+                      color: Colors.grey.withOpacity(0.2))
+                ]),
+            child: TextField(
+              controller: descController,
+              maxLines: 50,
+              minLines: 1,
+              decoration: InputDecoration(
+                  hintText: " Description",
+                  focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(30),
+                      borderSide:
+                          BorderSide(color: Colors.white, width: 1.0)),
+                  enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(30),
+                      borderSide:
+                          BorderSide(color: Colors.white, width: 1.0)),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(30))),
             ),
           ),
           SizedBox(

@@ -67,94 +67,92 @@ class ItemsWidgePersonal extends StatelessWidget {
             shrinkWrap: true,
             children: [
               for (int i = 0; i < imgURL_list.length!; i++)
-                Flexible(
-                  child: Container(
-                    padding: EdgeInsets.only(left: 15, right: 15, top: 10),
-                    margin: EdgeInsets.symmetric(vertical: 8, horizontal: 10),
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(20)),
-                    child: Column(
-                      children: [
-                        Row(
+                Container(
+                  padding: EdgeInsets.only(left: 15, right: 15, top: 10),
+                  margin: EdgeInsets.symmetric(vertical: 8, horizontal: 10),
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(20)),
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Icon(
+                            Icons.more_horiz,
+                            color: Color(0xFF072E54),
+                          ),
+                        ],
+                      ),
+                      InkWell(
+                        onTap: () {
+
+                          ProductPage.user_name = FirebaseFirestore.instance.collection("users").doc(
+                              FirebaseAuth.instance.currentUser?.uid.toString()
+                          ).get();
+                          ProductPage.imgURL = imgURL_list[i];
+                          ProductPage.p_desc = desc_list[i];
+                          ProductPage.p_name = name_list[i];
+                          ProductPage.p_price = price_list[i];
+
+                          Navigator.of(context).push(
+                            CupertinoPageRoute(
+                              fullscreenDialog: true,
+                              builder: (context) => const ProductPage(),
+                            ),
+                          );
+
+                        },
+                        child: Container(
+                          margin: EdgeInsets.all(10),
+                          child: Image.network(
+                            imgURL_list[i],
+                            height: 120,
+                            width: 120,
+                          ),
+                        ),
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(bottom: 8),
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          name_list[i],
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Color(0xFF072E54),
+                            fontWeight: FontWeight.bold,
+                          ),
+                          maxLines: 1,
+                        ),
+                      ),
+                      Container(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          desc_list[i],
+                          style: TextStyle(
+                            fontSize: 15,
+                            color: Color(0xFF072E54),
+                          ),
+                          maxLines: 1,
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(vertical: 10),
+                        child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Icon(
-                              Icons.more_horiz,
-                              color: Color(0xFF072E54),
+                            Text(
+                              price_list[i],
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xFF072E54),
+                              ),
                             ),
                           ],
                         ),
-                        InkWell(
-                          onTap: () {
-
-                            ProductPage.user_name = FirebaseFirestore.instance.collection("users").doc(
-                                FirebaseAuth.instance.currentUser?.uid.toString()
-                            ).get();
-                            ProductPage.imgURL = imgURL_list[i];
-                            ProductPage.p_desc = desc_list[i];
-                            ProductPage.p_name = name_list[i];
-                            ProductPage.p_price = price_list[i];
-
-                            Navigator.of(context).push(
-                              CupertinoPageRoute(
-                                fullscreenDialog: true,
-                                builder: (context) => const ProductPage(),
-                              ),
-                            );
-
-                          },
-                          child: Container(
-                            margin: EdgeInsets.all(10),
-                            child: Image.network(
-                              imgURL_list[i],
-                              height: 120,
-                              width: 120,
-                            ),
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.only(bottom: 8),
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            name_list[i],
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: Color(0xFF072E54),
-                              fontWeight: FontWeight.bold,
-                            ),
-                            maxLines: 1,
-                          ),
-                        ),
-                        Container(
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            desc_list[i],
-                            style: TextStyle(
-                              fontSize: 15,
-                              color: Color(0xFF072E54),
-                            ),
-                            maxLines: 1,
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(vertical: 10),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                price_list[i],
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                  color: Color(0xFF072E54),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
             ],

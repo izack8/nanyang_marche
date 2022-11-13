@@ -83,32 +83,25 @@ class _ProfilePageState extends State<ProfilePage>{
                             ),
                             Row(
                               children: const [
-
-                                Expanded(
-                                  flex:1,
-                                  child: Center(
-                                    child: Text(
-                                      'Posts 0',
-                                      style: TextStyle(
-                                        fontSize: 20.0,
-                                        color: Colors.black,
-                                        letterSpacing: 2.5,
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                                Center(
+                                  child: Text(
+                                    '      Posts 0               ',
+                                    style: TextStyle(
+                                      fontSize: 20.0,
+                                      color: Colors.black,
+                                      letterSpacing: 2.5,
+                                      fontWeight: FontWeight.bold,
                                     ),
                                   ),
                                 ),
-                                Expanded(
-                                  flex: 1,
-                                  child: Center(
-                                    child: Text(
-                                      'Followers 0',
-                                      style: TextStyle(
-                                        fontSize: 20.0,
-                                        color: Colors.black,
-                                        letterSpacing: 2.5,
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                                Center(
+                                  child: Text(
+                                    'Followers 0',
+                                    style: TextStyle(
+                                      fontSize: 20.0,
+                                      color: Colors.black,
+                                      letterSpacing: 2.5,
+                                      fontWeight: FontWeight.bold,
                                     ),
                                   ),
                                 ),
@@ -119,7 +112,7 @@ class _ProfilePageState extends State<ProfilePage>{
                               width: 200.0,
                             ),
                             const SizedBox(
-                              child: Expanded(child: Text(
+                              child: Text(
                                 'Your Listings',
                                 style: TextStyle(
                                   fontSize: 20.0,
@@ -127,7 +120,6 @@ class _ProfilePageState extends State<ProfilePage>{
                                   letterSpacing: 2.5,
                                   fontWeight: FontWeight.bold,
                                 ),
-                              ),
                               ),
                             ),
                             const SizedBox(
