@@ -1,16 +1,10 @@
 # nanyang_marche
 
-DIP Proj 2022
+This project is for NTU's DIP Project 2022. 
 
-## Getting Started
+A highly motivated and dynamic team of six talented individuals united their skills and expertise to embark on the development journey of an exciting e-commerce app. With a shared vision of empowering students at NTU, this dedicated team poured their collective efforts into creating a user-friendly platform that aims to enhance the current solution. Through seamless collaboration and creative problem-solving, the team is committed to delivering an app that caters specifically to the needs and preferences of NTU students.
 
-This project is a starting point for a Flutter application.
+For more information on this project, please peruse "Nanyang_Marche_Report" and "Nanyang_Marche_Presentation".
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
